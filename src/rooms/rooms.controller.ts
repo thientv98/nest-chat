@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
+import { ListAllEntities } from './dto/list-all-entities.dto';
 
 @Controller('rooms')
 export class RoomsController {
@@ -14,9 +15,8 @@ export class RoomsController {
   }
 
   @Get()
-  async findAll() {
-    // await this.roomsService.create({title: 'Room 3 w schema timestamp'});
-    return await this.roomsService.findAll();
+  async findAll(@Query() query: ListAllEntities) {
+    return await this.roomsService.findAll(query);
   }
 
   @Get(':id')

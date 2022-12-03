@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+    <script>
+      const socket = io('http://localhost:8000');
+      socket.on('connect', function() {
+        console.log('Connected');
+
+        socket.emit('identity', 0, response =>
+          console.log('Identity:', response),
+        );
+      });
+      socket.on('chatRoom', function(data) {
+        const div = document.createElement('div');
+        div.innerHTML = data.title;
+        document.querySelector('#rooms').append(div)
+
+      });
+      socket.on('exception', function(data) {
+        console.log('event', data);
+      });
+      socket.on('disconnect', function() {
+        console.log('Disconnected');
+      });
+
+      function join() {
+        document.querySelector('#rooms').innerHTML = ''
+        const msg = document.querySelector('#msg').value
+        socket.emit('getJoinedRooms', { msg });
+      }
+    </script>
+
+  </head>
+
+  <body>
+
+    Owner : <input type="text" id="msg">
+    <button onclick="join()"> get room</button>
+
+    <div id="rooms"></div>
+
+
+  </body>
+</html>
