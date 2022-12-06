@@ -13,12 +13,12 @@ export class RoomsService {
     @InjectModel(Room.name) private roomModel: Model<RoomDocument>,
     @InjectModel(User.name) private userModel: Model<UserDocument>
   ) {}
-  
+
   async create(createRoomDto: CreateRoomDto) {
     return new this.roomModel({
-      ...createRoomDto, 
-      owner: (await this.userModel.findOne()).id, 
-      members: (await this.userModel.find().exec()).slice(0,2).map(x => x.id)
+      ...createRoomDto,
+      owner: (await this.userModel.findOne()).id,
+      members: (await this.userModel.find().exec()).slice(0, 2).map((x) => x.id),
     }).save();
   }
 
@@ -27,11 +27,11 @@ export class RoomsService {
   }
 
   async findOne(id: string) {
-    return this.roomModel.findOne({_id: id}).populate('owner').populate('members').exec();
+    return this.roomModel.findOne({ _id: id }).populate('owner').populate('members').exec();
   }
 
   async update(id: string, updateRoomDto: UpdateRoomDto) {
-    return this.roomModel.findOneAndUpdate({_id: id}, updateRoomDto).exec();
+    return this.roomModel.findOneAndUpdate({ _id: id }, updateRoomDto).exec();
   }
 
   async remove(id: string) {

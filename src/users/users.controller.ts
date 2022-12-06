@@ -1,24 +1,27 @@
 import { User } from './../schema/user.schema';
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { hashSync } from 'bcrypt';
 
-@Controller('users')
+@Controller('api/users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @Get()
-  saveUser(): string {
+  @Post()
+  create(): string {
+    const password = hashSync('123456', 10);
     this.userService.create({
-      name: 'test',
-      age: '123',
-      breed: 'test',
+      email: 'test2@example.com',
+      username: 'test2',
+      displayName: 'Test 2',
+      password: password,
     });
 
     return 'Hello World!';
   }
 
-  @Get('/list')
-  async getUser(): Promise<User[]> {
+  @Get()
+  async get(): Promise<User[]> {
     const users = await this.userService.findAll();
 
     return users;
