@@ -4,7 +4,7 @@ import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { ListAllEntities } from './dto/list-all-entities.dto';
 
-@Controller('rooms')
+@Controller('api/rooms')
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
 
