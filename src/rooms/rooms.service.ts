@@ -1,8 +1,8 @@
+import { Room, RoomDocument } from './entities/room.entity';
+import { User, UserDocument } from './../users/entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Room, RoomDocument } from 'src/schema/room.schema';
-import { User, UserDocument } from 'src/schema/user.schema';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { ListAllEntities } from './dto/list-all-entities.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';

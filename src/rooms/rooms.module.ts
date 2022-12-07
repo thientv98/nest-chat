@@ -1,9 +1,9 @@
+import { Room, RoomSchema } from './entities/room.entity';
+import { User, UserSchema } from './../users/entities/user.entity';
 import { Module } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { RoomsController } from './rooms.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Room, RoomSchema } from 'src/schema/room.schema';
-import { User, UserSchema } from 'src/schema/user.schema';
 
 @Module({
   imports: [

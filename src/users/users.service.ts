@@ -1,4 +1,5 @@
-import { User, UserDocument } from './../schema/user.schema';
+import { UserDocument } from './entities/user.entity';
+import { User } from './entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';

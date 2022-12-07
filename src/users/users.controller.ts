@@ -1,4 +1,4 @@
-import { User } from './../schema/user.schema';
+import { User } from './entities/user.entity';
 import { Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { hashSync } from 'bcrypt';

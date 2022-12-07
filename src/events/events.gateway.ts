@@ -1,3 +1,4 @@
+import { RoomDocument } from './../rooms/entities/room.entity';
 import {
   MessageBody,
   SubscribeMessage,
@@ -9,7 +10,6 @@ import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Server } from 'socket.io';
 import { RoomsService } from 'src/rooms/rooms.service';
-import { RoomDocument } from 'src/schema/room.schema';
 
 @WebSocketGateway({
   cors: {

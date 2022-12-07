@@ -15,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     RoomsModule,
     EventsModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
