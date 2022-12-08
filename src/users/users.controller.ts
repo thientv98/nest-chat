@@ -1,21 +1,15 @@
 import { User } from './entities/user.entity';
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { hashSync } from 'bcrypt';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('api/users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Post()
-  create(): string {
-    const password = hashSync('123456', 10);
-    this.userService.create({
-      email: 'test2@example.com',
-      username: 'test2',
-      displayName: 'Test 2',
-      password: password,
-    });
+  create(@Body() createUserDto: CreateUserDto): string {
+    this.userService.create(createUserDto);
 
     return 'Hello World!';
   }

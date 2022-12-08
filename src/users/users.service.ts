@@ -1,3 +1,4 @@
+import { hashSync } from 'bcrypt';
 import { UserDocument } from './entities/user.entity';
 import { User } from './entities/user.entity';
 import { Injectable } from '@nestjs/common';
@@ -8,9 +9,10 @@ import { Model } from 'mongoose';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async create(createCatDto: any): Promise<User> {
-    const createdCat = new this.userModel(createCatDto);
-    return createdCat.save();
+  async create(createUserDto: any): Promise<User> {
+    createUserDto.password = hashSync(createUserDto.password, 10);
+    const user = new this.userModel(createUserDto);
+    return user.save();
   }
 
   async findAll(): Promise<User[]> {
